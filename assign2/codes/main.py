@@ -1,28 +1,16 @@
-import random
-# roll a dice 100000 times to compute the probability of rolling 1
-
-import random
+import numpy as np
 
 def simulate_dice_rolls(num_rolls):
     # Counter for the number of times we roll a '1'
     count_rolls_of_one = 0
-    
-    # Perform 'num_rolls' simulations
-    for _ in range(num_rolls):
-        # Simulate rolling a fair six-sided die
-        roll_result = random.randint(1, 6)
-        
-        # Check if the roll result is '1'
-        if roll_result == 1:
-            count_rolls_of_one += 1
-            
+    X = np.random.randint(1,7,num_rolls)
     # Calculate the probability estimate
-    probability_estimate = count_rolls_of_one / num_rolls
+    probability_estimate = len([i for i in X if i == 1]) / num_rolls
     
     return probability_estimate
 
 # Simulate rolling a die 100,000 times
-num_rolls = 100000
+num_rolls = 100_000
 estimated_probability = simulate_dice_rolls(num_rolls)
 
 # Print the estimated probability
