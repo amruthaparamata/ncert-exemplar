@@ -1,11 +1,9 @@
 import numpy as np
 
 def simulate_dice_rolls(num_rolls):
-    # Counter for the number of times we roll a '1'
-    count_rolls_of_one = 0
     X = np.random.randint(1,7,num_rolls)
     # Calculate the probability estimate
-    probability_estimate = len([i for i in X if i == 1]) / num_rolls
+    probability_estimate = sum(X==1) / num_rolls
     
     return probability_estimate
 
