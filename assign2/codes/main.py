@@ -1,17 +1,13 @@
 import numpy as np
 
-def simulate_dice_rolls(num_rolls):
-    X = np.random.randint(1,7,num_rolls)
-    # Calculate the probability estimate
-    probability_estimate = sum(X==1) / num_rolls
-    
-    return probability_estimate
+# Number of dice rolls
+n = 100000
 
-# Simulate rolling a die 100,000 times
-num_rolls = 100_000
-estimated_probability = simulate_dice_rolls(num_rolls)
+# Simulate n rolls of a dice using Bernoulli distribution
+# Use np.random.binomial(1, p) where p is the probability of success (rolling a 1)
+rolls = np.random.binomial(1, 1/6, n)
 
-# Print the estimated probability
-print(f"Estimated Probability of Rolling a '1' after {num_rolls} rolls: {estimated_probability:.4f}")
-print("It's clearly not 0.5")
-# Expected output (should be close to 1/6 = 0.1667)
+# Compute the estimated probability of rolling a 1
+estimated_probability = np.mean(rolls)
+
+print(f"Estimated probability of rolling a 1 in {n} trials: {estimated_probability:.4f}")
