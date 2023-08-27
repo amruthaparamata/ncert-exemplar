@@ -99,29 +99,20 @@
 
 Question:A student says that if you throw a die, it will show up 1 or not 1. Therefore, the probability of getting 1 and the probability of getting 'not 1' each is equal to $\frac{1}{2}$. Is this correct? Give reasons.\\
 \solution\\
-Let 
-
- \begin{center}
-\begin{tabular}{|l|c|r|}
-     \hline
-    Parameter & Values & Description\\
-     \hline
-     X & 1 & if 1\\
-       & 0 & if not 1(2,3,4,5,6)\\
-     \hline
-\end{tabular}
-\end{center}
-%\begin{figure}[h!]
-Then  
+Given,\\
+A die is thrown\\
+Total number of outcomes = 6\\
+Hence, Probability of getting 1 be $p_X\brak{X = 1}$ = $\frac{1}{6}$  \\            
+Then 
 \begin{align}
-               p_X\brak{0} &= \frac{5}{6}\\
-               p_X\brak{1} &= 1-p_X\brak{0}\\
+               p_X\brak{2 \le X \le 6} &= \frac{5}{6}\\
+               p_X\brak{X = 1} &= 1-p_X\brak{2 \le X \le 6}\\
                &=1-\frac{5}{6}\\
                &=\frac{1}{6}          
 \end{align}
 \begin{align}
-      \implies p_X\brak{0}\ne p_X\brak{1}
+      \implies p_X\brak{2 \le X \le 6}\ne p_X\brak{X = 1}
 \end{align}
-Since, $p_X\brak{1}$ and $p_X\brak{0}$ are not equal.\\
+Since, $p_X\brak{X = 1}$ and $p_X\brak{2 \le X \le 6}$ are not equal.\\
 $\therefore$ The given statement is not true
 \end{document}
