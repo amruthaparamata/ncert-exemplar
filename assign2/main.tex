@@ -102,13 +102,15 @@ Question:A student says that if you throw a die, it will show up 1 or not 1. The
 Given,\\
 A die is thrown\\
 Total number of outcomes = 6\\
-Hence, Probability of getting 1 be $p_X\brak{X = 1}$ = $\frac{1}{6}$  \\            
-Then 
+Hence, Probability of getting any number be $p_X\brak{X = i}$ = $\frac{1}{6}$  \\            
+Then, by using pmf
 \begin{align}
-               p_X\brak{2 \le X \le 6} &= \frac{5}{6}\\
+               p_X\brak{2 \le X \le 6} &= \sum_{i=2}^{6} p_X\brak{X = i}\\               
                p_X\brak{X = 1} &= 1-p_X\brak{2 \le X \le 6}\\
-               &=1-\frac{5}{6}\\
-               &=\frac{1}{6}          
+               &= 1-\sum_{i=2}^{6} p_X\brak{X = i}\\
+               &= 1-p_X\brak{X = 2} + p_X\brak{X = 3} + p_X\brak{X = 4} + p_X\brak{X = 5} + p_X\brak{X = 6}\\
+               &= 1-\frac{5}{6}\\
+               &= \frac{1}{6}          
 \end{align}
 \begin{align}
       \implies p_X\brak{2 \le X \le 6}\ne p_X\brak{X = 1}
