@@ -94,7 +94,7 @@
 %\renewcommand{\theequation}{\theenumi}
 
 \textbf{Question }\\
-A box has 100 pens of which 10 are defective . What is the probability that out of a sample of 5 pens drawn one by one with replacement at most is defective?\\
+A box has 100 pens of which 10 are defective . What is the probability that out of a sample of 5 pens drawn one by one with replacement at most one is defective?\\
 (A)$\left(\frac{9}{10}\right)^5$\\
 (B)$\frac{1}{2}\left(\frac{9}{5}\right)^4$\\
 (C)$\frac{1}{2}\left(\frac{9}{10}\right)^5$\\
@@ -107,19 +107,50 @@ A box has 100 pens of which 10 are defective . What is the probability that out 
     \hline
     Parameter & Values & Description\\
     \hline
-    $n$ & 10 & Number of defective pens \\
+    $n$ & 5 & Number of defective pens \\
     \hline
     $p$ & 0.1 &probability of drawing a defective pen \\
     \hline
-    $\mu$ & 1 & np \\
+    $\mu$ & 0.5 & np \\
     \hline
-    $\sigma $ & 0.948 & $\sqrt{np(1-p)} $\\
+    $\sigma $ & 0.671 & $\sqrt{np(1-p)} $\\
     \hline
     $ X $ &  &  Defective pens \\
     \hline
 \end{tabular}
 \label{tab:gaussian/9/3/33}
 \end{table}
+
+\textbf{using Gaussian}
+\begin{align}
+Y \sim \gauss{\mu}{\sigma^2}
+\end{align}
+The CDF of $Y$:
+\begin{align}
+	F_Y(y) &= 1 - \pr{Y>y}\\
+	&= 1 - \pr{\frac{Y-\mu}{\sigma}>\frac{y-\mu}{\sigma}}
+\end{align}
+But,
+\begin{align}
+	\frac{Y-\mu}{\sigma} &\sim \gauss{0}{1}\\
+\end{align}
+the Q-function is defined as:
+\begin{align}
+\qfunc{x} &= \pr{Y > x} \, \forall x \in Y \sim \mathcal{N}(0.5,0.45) 
+\end{align}
+therefore the cdf will be:
+\begin{align}
+F_Y\brak{y} &= 
+\begin{cases}
+           1-\qfunc{ \frac{y-\mu}{\sigma}}, &  y > \mu \\
+           \qfunc{ \frac{\mu-y}{\sigma}} , &  y < \mu
+\end{cases} 
+\end{align}
+Probability that out of a sample of 5 pens drawn one by one with replacement at most one is defective is\\
+\begin{align}
+\pr{0.5 \leq X \leq 1.5} &=Q\brak{\frac{0.5-\mu}{\sigma}\leq X \leq \frac{1.5-\mu}{\sigma}} \quad \\
+&=Q\brak{\frac{0.5-\mu}{\sigma}\leq X \leq \frac{1.5-\mu}{\sigma}}
+\end{align}
 The gaussian distribution function is defined as:
 \begin{align}
 p_Y\brak{x} &= \frac{1}{\sqrt{2\pi{\sigma}^2}} e^{-\frac{\brak{x-\mu}^2}{2{\sigma}^2}}\label{9.3.8} \qquad \brak{x \in Y}
@@ -156,7 +187,7 @@ Y &= 5\\
 	      &\approx 1.11 \times 10^{-4}      
 \end{align}
 \begin{figure}
-\includegraphics[width=\columnwidth]{/home/sravanthi/33/figs/Fig1.png}
+\includegraphics[width=\columnwidth]{/home/amrutha/junk/33/figs/Fig1.png}
 \caption{pmf of binomial and pdf of Gaussian of X and Y marked balls}
 \label{fig:gaussian/9/3/33/}
 \end{figure}
