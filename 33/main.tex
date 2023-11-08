@@ -1,4 +1,3 @@
-%\iffalse
 \let\negmedspace\undefined
 \let\negthickspace\undefined
 \documentclass[journal,12pt,onecolumn]{IEEEtran}
@@ -26,7 +25,7 @@
 \providecommand{\rank}{\text{rank}}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
-	\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
 \newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
 \newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
@@ -100,7 +99,6 @@ A box has 100 pens of which 10 are defective . What is the probability that out 
 (C)$\frac{1}{2}\left(\frac{9}{10}\right)^5$\\
 (D)$\frac{1}{2}\left(\frac{9}{5}\right)^4+\left(\frac{9}{10}\right)^5 $\\
 \solution\\
-%\fi
 \begin{table}[!ht]
 \centering
 \begin{tabular}{|l|c|r|}
@@ -121,73 +119,51 @@ A box has 100 pens of which 10 are defective . What is the probability that out 
 \label{tab:gaussian/9/3/33}
 \end{table}
 
-\textbf{using Gaussian}
+\textbf{Using Binomial}\\
+Given,\\
+Probability of drawing a defective pen = $\frac{1}{10}$\\
+Probability of drawing a non-defective pen = $\frac{9}{10}$\\
+Let,\\
+Probability of drawing atmost one pen out of 5 defective with replacement = $\pr{X \le 1}$
+\begin{align}
+\pr{X \le 1} = p_X\brak{0} + p_X\brak{1}\\
+\implies \pr{X \le 1} = \binom{5}{0}\left(\frac{9}{10}\right)^5 + \binom{5}{1}\left(\frac{9}{10}\right)^4\left(\frac{1}{10}\right)\\
+= \left(\frac{9}{10}\right)^5 + 5\left(\frac{9}{10}\right)^4\left(\frac{1}{10}\right)\\
+= \left(\frac{9}{10}\right)^5 + \frac{1}{2}\left(\frac{9}{10}\right)^4
+\end{align}
+
+\textbf{Gaussian}
 \begin{align}
 Y \sim \gauss{\mu}{\sigma^2}
 \end{align}
-The CDF of $Y$:
+CDF of Y is
 \begin{align}
-	F_Y(y) &= 1 - \pr{Y>y}\\
-	&= 1 - \pr{\frac{Y-\mu}{\sigma}>\frac{y-\mu}{\sigma}}
+F_{Y}\brak{y} &= \pr{Y \leq y}
 \end{align}
-But,
+We know that 
 \begin{align}
-	\frac{Y-\mu}{\sigma} &\sim \gauss{0}{1}\\
+\qfunc{x} &= \pr{X > x}, x > 0, X \sim N(0,1)\\
+\qfunc{-x} &= \pr{X > -x}, x < 0, X \sim N(0,1)\\
+&= 1 - \qfunc{x}
 \end{align}
-the Q-function is defined as:
+Hence,\\
+CDF :
 \begin{align}
-\qfunc{x} &= \pr{Y > x} \, \forall x \in Y \sim \mathcal{N}(0.5,0.45) 
-\end{align}
-therefore the cdf will be:
-\begin{align}
-F_Y\brak{y} &= 
-\begin{cases}
-           1-\qfunc{ \frac{y-\mu}{\sigma}}, &  y > \mu \\
-           \qfunc{ \frac{\mu-y}{\sigma}} , &  y < \mu
-\end{cases} 
-\end{align}
-Probability that out of a sample of 5 pens drawn one by one with replacement at most one is defective is\\
-\begin{align}
-\pr{0.5 \leq X \leq 1.5} &=Q\brak{\frac{0.5-\mu}{\sigma}\leq X \leq \frac{1.5-\mu}{\sigma}} \quad \\
-&=Q\brak{\frac{0.5-\mu}{\sigma}\leq X \leq \frac{1.5-\mu}{\sigma}}
-\end{align}
-The gaussian distribution function is defined as:
-\begin{align}
-p_Y\brak{x} &= \frac{1}{\sqrt{2\pi{\sigma}^2}} e^{-\frac{\brak{x-\mu}^2}{2{\sigma}^2}}\label{9.3.8} \qquad \brak{x \in Y}
-\end{align}
-Probability that out of a sample of 5 pens drawn one by one with replacement at most is defective is\\
-\begin{align} 
- Y = 5\\
-p_Y\brak{2} &= \frac{1}{\sqrt{2\pi\brak{0.9}}} e^{-\frac{\brak{5 - 1}^2}{2\brak{0.9}}}\\
-		  &= \frac{1}{\sqrt{2\pi\brak{0.9}}} e^{-8.88}\\
-	          &=  5.85\times 10^{-5}  
-\end{align}
-% ans 0.91854
-\textbf{Q function}\\
-Solving using Q function is defined
-\begin{align}
-	\qfunc{x}=\int_x^{\infty}f\brak{x}dx
-\end{align}
-then CDF of $Y$ is:
-\begin{align}
-	\pr{Y<x}&=\int_{-\infty}^x f\brak{x} dx\\
-	&=1-\int_x^{\infty}f\brak{x}dx\\
-	&=1-\qfunc{x}
-\end{align}
-and for finding \pr{Z=\frac{X-\mu}{\sigma}} Using approximation,
-\begin{align}
-	\pr{Z=\frac{Y-\mu}{\sigma}} &\approx \pr{\frac{Y+0.5-\mu}{\sigma} < Z < \frac{Y-0.5-\mu}{\sigma}}\\
-	&\approx \pr{Z<\frac{Y+0.5-\mu}{\sigma}} - \pr{Z<\frac{Y-0.5-\mu}{\sigma}}\\
-	&\approx \qfunc{\frac{Y-0.5-\mu}{\sigma}} - \qfunc{\frac{Y+0.5-\mu}{\sigma}}
+F_Y\brak{y} &= \begin{cases}
+                 1 - \qfunc{\frac{y - \mu}{\sigma}},& \text{if $y > \mu$}\\
+                 1 - \qfunc{\frac{y - \mu}{\sigma}} = \qfunc{\frac{\mu - y}{\sigma}},& \text{if $y < \mu$}
+               \end{cases}
 \end{align}
 \begin{align}
-Y &= 5\\
-\pr{Z=4.219} &\approx \qfunc{3.69} - \qfunc{4.74}\\
-    &\approx 0.000112127 -  1.06859 \times  10^-6 \\
-	      &\approx 1.11 \times 10^{-4}      
+F_Y\brak{1} &= \pr{Y \leq 1}\\
+&= 1 - \qfunc{\frac{1 - 0.5}{\sqrt{0.671}}}\\
+&= 1 - \qfunc{\frac{0.5}{0.819}}\\
+&= 1 - \qfunc{0.6104}\\
+&= 0.729198876
 \end{align}
-\begin{figure}
-\includegraphics[width=\columnwidth]{/home/amrutha/junk/33/figs/Fig1.png}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{figs/Fig1.png}
 \caption{pmf of binomial and pdf of Gaussian of X and Y marked balls}
 \label{fig:gaussian/9/3/33/}
 \end{figure}
